@@ -416,6 +416,7 @@ coverage
 /cypress/screenshots/
 
 # Editor directories and files
+webapi/appsettings.json
 .vscode/*
 !.vscode/extensions.json
 .idea
