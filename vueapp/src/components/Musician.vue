@@ -1,95 +1,90 @@
 <template>
-  <div>
-    Page to become a musician
-    <form>
-      <h4>Registration of musician</h4>
-      <input
-        v-bind:value="musician.lastname"
-        @input="musician.lastname = $event.target.value"
-        class="input"
-        type="text"
-        placeholder="text"
-      />
-      <input
-        v-bind:value="musician.firstname"
-        @input="musician.firstname = $event.target.value"
-        class="input"
-        type="text"
-        placeholder="text"
-      />
+  <div class="creatingMusician">
+    <div class="card">
       <input
         v-bind:value="musician.profileInstruments"
         @input="musician.profileInstruments = $event.target.value"
         class="input"
         type="text"
-        placeholder="text"
+        placeholder="Profile instruments"
       />
       <input
         v-bind:value="musician.yearsOfExperience"
         @input="musician.yearsOfExperience = $event.target.value"
         class="input"
         type="int"
-        placeholder="int"
+        placeholder="Years of experience"
       />
       <input
         v-bind:value="musician.statusOfActivity"
         @input="musician.statusOfActivity = $event.target.value"
         class="input"
         type="text"
-        placeholder="text"
+        placeholder="Status of Activity"
       />
       <input
         v-bind:value="musician.country"
         @input="musician.country = $event.target.value"
         class="input"
         type="text"
-        placeholder="text"
+        placeholder="Country"
       />
       <input
         v-bind:value="musician.city"
         @input="musician.city = $event.target.value"
         class="input"
         type="text"
-        placeholder="text"
+        placeholder="City"
       />
-    </form>
-    <button class="confirmButton">Become a musician</button>
+      <button
+        class="button is-success is-outlined"
+        @click="createMusician"
+      >Create musician</button>
+    </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-
+import { mapState } from "vuex";
 export default {
+  computed: { ...mapState(["musician"]) },
   data() {
     return {
-      dialogVisible: false,
+      componentShown: false,
       musician: {
-        lastname: "",
-        firstname: "",
         profileInstruments: "",
-        statusOfActivity: "",
-        yearsOfExperience: "",
-        country: "",
+        yearsOfExperience: 0,
+        county: "",
         city: "",
+        statusOfActivity: "",
       },
     };
   },
-
   methods: {
-    async getInfoFromProfile() {
-      profileLastname = await axios.get(
-        "https://localhost:7234/api/Auth/Authorize",
-        data.lastname
-      );
-      profileFirstname = await axios.get(
-        "https://localhost:7234/api/Auth/Authorize",
-        data.firstname
-      );
+    async createMusician() {
+      const data = this.musician;
+      const response = await axios
+        .post("https://localhost:7234/api/Musician/AddMusician", data, {
+          headers: {
+            "Content-Type": "application/json",
+            accept: "text/plain",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
+        .catch((e) => console.log(e));
+
+      this.$store.dispatch("setMusician", response.data);
+
+      this.$router.push("/Profile");
     },
   },
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+.input {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
 </style>

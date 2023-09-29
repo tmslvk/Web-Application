@@ -3,6 +3,7 @@ import MainPage from './components/MainPage.vue'
 import Bands from './components/Bands.vue'
 import Profile from './components/Profile.vue'
 import LoginForm from './components/LoginForm.vue'
+import Musician from './components/Musician.vue'
 import { store } from './storage'
 import { shallowReactive } from 'vue'
 import RegisterForm from './components/RegisterForm.vue'
@@ -32,6 +33,11 @@ const router = createRouter({
             path: '/Registration',
             name: 'Registration',
             component: RegisterForm
+        },
+        {
+            path: '/Musician',
+            name: 'Musician',
+            component: Musician
         }
     ]
 })

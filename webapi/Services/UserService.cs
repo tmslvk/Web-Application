@@ -1,5 +1,6 @@
 ﻿using Azure.Core;
 using Microsoft.EntityFrameworkCore;
+using webapi.DTO;
 
 namespace webapi.Models
 {
@@ -42,25 +43,15 @@ namespace webapi.Models
             {
                 return null;
             }
+            db.Entry(user).Reference(u => u.Musician).Load();
             return user;
         }
 
         public async Task<User?> GetOne(int id)
         {
-            return await db.Users.FirstOrDefaultAsync(u => u.Id == id);
-        }
-
-        public async Task<User?> LinkMusician(int userId, Musician musician)
-        {
-            User? user = await this.GetOne(userId);
-
-            if(user == null)
-            {
-                return null;
-            }
-            user.Musician = musician;
-            db.SaveChanges();
-
+            var user = await db.Users.FirstOrDefaultAsync(u => u.Id == id);
+            if(user != null)
+                db.Entry(user).Reference(u => u.Musician).Load();
             return user;
         }
 
@@ -69,5 +60,6 @@ namespace webapi.Models
             var user = await db.Users.FirstOrDefaultAsync(u => u.Username == username);
             return user != null;
         }
+
     }
 }

@@ -12,8 +12,8 @@ using webapi;
 namespace webapi.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20230904145520_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20230918142814_updatingTables")]
+    partial class updatingTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,11 +27,11 @@ namespace webapi.Migrations
 
             modelBuilder.Entity("webapi.Models.Musician", b =>
                 {
-                    b.Property<int>("MusicianId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MusicianId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("City")
                         .IsRequired()
@@ -52,7 +52,7 @@ namespace webapi.Migrations
                     b.Property<int>("YearsOfExperience")
                         .HasColumnType("int");
 
-                    b.HasKey("MusicianId");
+                    b.HasKey("Id");
 
                     b.ToTable("Musicians");
                 });
@@ -81,6 +81,7 @@ namespace webapi.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("MusicianId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("Password")
@@ -97,8 +98,7 @@ namespace webapi.Migrations
                         .IsUnique();
 
                     b.HasIndex("MusicianId")
-                        .IsUnique()
-                        .HasFilter("[MusicianId] IS NOT NULL");
+                        .IsUnique();
 
                     b.HasIndex("Username")
                         .IsUnique();
@@ -110,7 +110,9 @@ namespace webapi.Migrations
                 {
                     b.HasOne("webapi.Models.Musician", "Musician")
                         .WithOne("User")
-                        .HasForeignKey("webapi.Models.User", "MusicianId");
+                        .HasForeignKey("webapi.Models.User", "MusicianId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Musician");
                 });

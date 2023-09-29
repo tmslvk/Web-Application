@@ -52,7 +52,7 @@
             v-bind:value="musician.city"
             @input="musician.city = $event.target.value"
             class="input"
-            type="password"
+            type="text"
             placeholder="City"
           />
           <button

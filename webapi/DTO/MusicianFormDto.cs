@@ -1,6 +1,6 @@
-﻿namespace webapi.Models
+﻿namespace webapi.DTO
 {
-    public class MusicianDto
+    public class MusicianFormDto
     {
         public int YearsOfExperience { get; set; }
         public string StatusOfActivity { get; set; }

@@ -70,7 +70,7 @@ export default {
   },
   data() {
     return {
-      dialogVisible: false,
+      errorVisible: false,
       user: {
         email: "",
         password: "",

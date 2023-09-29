@@ -9,11 +9,12 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Runtime.CompilerServices;
 using System.Security.Claims;
 using System.Text;
+using webapi.DTO;
 using webapi.Models;
 
 namespace webapi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/auth")]
     [ApiController]
     public class AuthController : ControllerBase
     {
@@ -26,7 +27,7 @@ namespace webapi.Controllers
             _configuration = configuration;
         }
 
-        [HttpPost("Registration")]
+        [HttpPost("register")]
         public async Task<ActionResult<string>> Register(UserDto request)
         {
             if ((await service.CheckUsername(request.Username)))
@@ -39,7 +40,7 @@ namespace webapi.Controllers
             return Created("", token);
         }
 
-        [HttpPost("LogIn")]
+        [HttpPost("login")]
         public async Task<ActionResult<string>> Login(LoginDto request)
         {
             if (request.Email == null || request.Email == String.Empty)
@@ -64,7 +65,7 @@ namespace webapi.Controllers
         }
 
         [Authorize]
-        [HttpGet("Me")]
+        [HttpGet("me")]
         public async Task<ActionResult<User>> Me()
         {
             var handler = new JwtSecurityTokenHandler();
@@ -84,12 +85,13 @@ namespace webapi.Controllers
             }
             var id = tokenS.Claims.First(claim => claim.Type == ClaimTypes.NameIdentifier).Value;
             var user = await service.GetOne(int.Parse(id));
+            Musician musician = new Musician();
             if (user == null)
             {
                 return BadRequest("User not found");
             }
 
-            return user;
+                return user;
         }
 
         private string CreateToken(User user)
@@ -97,7 +99,8 @@ namespace webapi.Controllers
             List<Claim> claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, user.Username),
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.UserData, user.Musician?.Id.ToString() ?? "")
             };
 
             var token = new JwtSecurityToken(

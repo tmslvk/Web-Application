@@ -12,8 +12,7 @@ namespace webapi.Models
     public class User
     {
         public int Id { get; set; }
-        public int? MusicianId { get; set; }
-        [ForeignKey("MusicianId")]
+
         public Musician? Musician { get; set; }
 
         [Required]

@@ -95,14 +95,28 @@
                   <div class="dropdown-item">
                     <div class="block">
                       <div class="title">Info</div>
+                      <div class="is-size-5">
+                        <strong>Profile</strong>
+                      </div>
                       <h1><strong>{{this.$store.state.user.username}}</strong></h1>
                       <h1>{{this.$store.state.user.firstname}} {{this.$store.state.user.lastname}}</h1>
                       <h1>{{(new Date(this.$store.state.user.dateOfBirth)).toLocaleDateString('en-GB')}}</h1>
+                      <h1>{{this.$store.state.user.profileInstruments}}</h1>
+                      <div class="is-size-5">
+                        <strong>Musician</strong>
+                      </div>
+                      <h1></h1>
                     </div>
                   </div>
                   <div class="dropdown-divider">
                     <div class="dropdown-content">
                       <div class="dropdown-item">
+                        <router-link
+                          class="navbar-item"
+                          to="/Musician"
+                        >
+                          <strong>Become a musician</strong>
+                        </router-link>
                         <router-link
                           class="navbar-item"
                           to="/Login"
