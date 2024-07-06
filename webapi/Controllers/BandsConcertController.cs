@@ -28,7 +28,7 @@ namespace webapi.Controllers
             this.musicianService = musicianService;
             this.musicianBandService = musicianBandService;
         }
-
+        [HttpPost]
         public async Task<ActionResult<BandConcert>> Add(BandConcertDto bandDto, int BandId, int ConcertId)
         {
             try

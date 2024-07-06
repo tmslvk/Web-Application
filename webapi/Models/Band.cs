@@ -3,11 +3,13 @@
     public class Band
     {
         public int Id { get; set; } 
-        public string NameOfBand { get; set; }
+        public string Name { get; set; }
         public DateTime DateOfFoundation { get; set; }
-        public string StatusOfActivity { get; set; }
-        public List<Musician> MusicianList { get; set;}
-        public List<Concert> ConcertList { get; set;}
-        public List<MusicianBand> BandsWrapper { get; set; } = new();
+        public bool IsActive { get; set; }
+        public List<Musician> MusicianList { get; set; } = new();
+        public List<Concert> ConcertList { get; set;} = new();
+        public List<MusicianBand> MusicianBandList { get; set; } = new();
+        public Musician? Founder { get; set; }
+        public int? FounderId { get; set; }
     }
 }

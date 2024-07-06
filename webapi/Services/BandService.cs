@@ -15,14 +15,18 @@ namespace webapi.Services
             this.db = context;
         }
 
-        public async Task<Band> Add(BandsDto bandsDto)
+        public async Task<Band> Add(BandDto bandsDto, Musician owner)
         {
+
             var band = new Band()
             {
-                NameOfBand = bandsDto.NameOfBand,
-                StatusOfActivity = bandsDto.StatusOfActivity,
-                MusicianList = bandsDto.MusicianList,
+                Name = bandsDto.Name,
+                IsActive = bandsDto.IsActive,
                 DateOfFoundation = bandsDto.DateOfFoundation,
+                //MusicianList = bandsDto.MusicianList,
+                //ConcertList = bandsDto.ConcertList,
+                //MusicianBandList = new List<MusicianBand>() { bandsDto.BandFounder },
+                Founder = owner
             };
 
             await db.Bands.AddAsync(band);

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -40,6 +41,26 @@ namespace webapi.Services
         public async Task<MusicianBand?> GetBandByMusicianId(int id)
         {
             return await db.MusicianBands.FirstOrDefaultAsync(mb => mb.MusicianId == id);
+        }
+
+        public async Task<MusicianBand> AddFounderToBand(MusicianInBandDto dto)
+        {
+            var musicianToBand = new MusicianBand()
+            {
+                BandID = dto.BandID,
+                ParticiapationDateFrom = dto.ParticiapationDateFrom,
+                ParticiapationDateTo = dto.ParticiapationDateTo,
+                ConfirmationRequest = dto.ConfirmationOfRequest,
+                BandWrap = dto.BandWrap,
+                MusicianId = dto.MusicianId,
+                MusicianWrap = dto.MusicianWrap,
+                Role = dto.Role,                
+            };
+
+            await db.MusicianBands.AddAsync(musicianToBand);
+            await db.SaveChangesAsync();
+
+            return musicianToBand;
         }
     }
 }

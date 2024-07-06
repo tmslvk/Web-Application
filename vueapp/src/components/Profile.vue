@@ -3,7 +3,7 @@
     <div class="block">
       <div class="box">
         <div class="profile">
-          <h1 class="title"><strong>{{this.$store.state.user.username}}</strong></h1>
+          <h1 class="title"><strong>Musician <i>{{this.$store.state.user.username}}</i></strong></h1>
           <h2>Description:</h2>
           <h2>Name: <strong>{{this.$store.state.user.lastname}}</strong> <strong>{{this.$store.state.user.firstname}}</strong></h2>
           <h2>Date Of birth: <strong>{{(new Date(this.$store.state.user.dateOfBirth)).toLocaleDateString('en-GB')}}</strong></h2>
@@ -63,6 +63,23 @@
       </div>
     </div>
   </div>
+  <div class="block">
+    <div class="columns is-multiline is-mobile">
+      <div class="column is-half">
+        <div class="card">
+          <div class="title is-centered">Band requests</div>
+          <h1>Place for confirmation band requests</h1>
+          <h1>{{this.$store.state.user.musician.band.name}}</h1>
+        </div>
+      </div>
+      <div class="column">
+        <div class="card is-centered">
+          <div class="title">Concert requests</div>
+          <h1>Place for confirmation concert requests</h1>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -90,7 +107,7 @@ export default {
     async createMusician() {
       const data = this.musician;
       const response = await axios
-        .post("https://localhost:7234/api/Musician/AddMusician", data, {
+        .post("https://localhost:7234/api/musicians", data, {
           headers: {
             "Content-Type": "application/json",
             accept: "text/plain",
@@ -111,5 +128,8 @@ export default {
 .input {
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
+}
+.card {
+  padding: 1rem;
 }
 </style>

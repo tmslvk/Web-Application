@@ -37,6 +37,12 @@ namespace webapi.Models
             return musician;
         }
 
+        public async Task<Musician?> GetMusicianByUserId(int userId)
+        {
+            var musician = await db.Musicians.FirstOrDefaultAsync(m => m.UserId == userId);
+            return musician;
+        }
+
         //public async Task<List<Musician>> GetAllMusicianByRole(MusicianBand musicianBand)
         //{
         //    return await db.Musicians.Where(u => u.ProfileInstruments == musicianBand.Role).ToListAsync();

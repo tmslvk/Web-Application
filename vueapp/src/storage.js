@@ -14,6 +14,12 @@ export const store = createStore({
           state.user.musician = musician;
           state.user.musicianId = musician.musicianId;
         }
+      },
+      setBand(state, band){
+        if(state.user.musician != null){
+          state.user.musician.band = band;
+          state.user.musician.bandId = band.bandId
+        }
       }
     },
     actions: {
@@ -26,7 +32,7 @@ export const store = createStore({
             return;
           }
           const { data: user } = await axios.get(
-            "https://localhost:7234/api/Auth/Me",
+            "https://localhost:7234/api/auth/me",
             {
               headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -44,6 +50,9 @@ export const store = createStore({
       },
       async setMusician({commit}, musician){
         commit("setMusician", musician)
+      },
+      async setBand({commit}, band){
+        commit("setBand", band)
       }
     },
   });

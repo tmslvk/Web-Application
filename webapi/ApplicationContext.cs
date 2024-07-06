@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using webapi.Controllers;
 using webapi.Models;
 
 namespace webapi
@@ -34,7 +35,7 @@ namespace webapi
                 .HasForeignKey(pt => pt.MusicianId),
             j => j
                 .HasOne(pt => pt.BandWrap)
-                .WithMany(p => p.BandsWrapper)
+                .WithMany(p => p.MusicianBandList)
                 .HasForeignKey(pt => pt.BandID),
             j =>
             {
@@ -42,6 +43,7 @@ namespace webapi
                 j.HasKey(t => new { t.BandID, t.MusicianId });
                 j.ToTable("MusicianBand");
             });
+            modelBuilder.Entity<Musician>().HasMany<Band>(m=>m.FoundedBands).WithOne(b=>b.Founder).HasForeignKey(band => band.FounderId).IsRequired(false);
         }
     }
 }

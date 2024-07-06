@@ -1,5 +1,4 @@
 C:\Users\Тима\source\repos\MuslinkClient\webapi\bin\Debug\net7.0\appsettings.Development.json
-C:\Users\Тима\source\repos\MuslinkClient\webapi\bin\Debug\net7.0\appsettings.json
 C:\Users\Тима\source\repos\MuslinkClient\webapi\bin\Debug\net7.0\webapi.exe
 C:\Users\Тима\source\repos\MuslinkClient\webapi\bin\Debug\net7.0\webapi.deps.json
 C:\Users\Тима\source\repos\MuslinkClient\webapi\bin\Debug\net7.0\webapi.runtimeconfig.json
@@ -76,3 +75,5 @@ C:\Users\Тима\source\repos\MuslinkClient\webapi\bin\Debug\net7.0\Microsoft.E
 C:\Users\Тима\source\repos\MuslinkClient\webapi\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
 C:\Users\Тима\source\repos\MuslinkClient\webapi\bin\Debug\net7.0\Mono.TextTemplating.dll
 C:\Users\Тима\source\repos\MuslinkClient\webapi\bin\Debug\net7.0\System.CodeDom.dll
+C:\Users\Тима\source\repos\MuslinkClient\webapi\bin\Debug\net7.0\appsettings.json
+C:\Users\Тима\source\repos\MuslinkClient\webapi\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.Certificate.dll

@@ -42,7 +42,7 @@ namespace webapi.Controllers
 
         [HttpPost("login")]
         public async Task<ActionResult<string>> Login(LoginDto request)
-        {
+        {   
             if (request.Email == null || request.Email == String.Empty)
             {
                 return BadRequest("Email cannot be empty");

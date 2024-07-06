@@ -91,7 +91,7 @@ export default {
     async login() {
       const data = this.user;
       const response = await axios
-        .post("https://localhost:7234/api/Auth/LogIn", data, {
+        .post("https://localhost:7234/api/auth/login", data, {
           headers: { "Content-Type": "application/json", accept: "text/plain" },
         })
         .catch((e) => console.log(e));

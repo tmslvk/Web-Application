@@ -203,7 +203,7 @@ export default {
         const data = { ...this.setupState.user };
         data.dateOfBirth = new Date(data.dateOfBirth).toISOString();
         const response = await axios
-          .post("https://localhost:7234/api/Auth/Registration", data, {
+          .post("https://localhost:7234/api/auth/register", data, {
             headers: {
               "Content-Type": "application/json",
               accept: "text/plain",

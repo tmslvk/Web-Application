@@ -48,6 +48,13 @@
             Profile
           </router-link>
 
+          <router-link
+            class="navbar-item"
+            to="/Bands"
+          >
+            Bands
+          </router-link>
+
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">
               More
@@ -101,11 +108,14 @@
                       <h1><strong>{{this.$store.state.user.username}}</strong></h1>
                       <h1>{{this.$store.state.user.firstname}} {{this.$store.state.user.lastname}}</h1>
                       <h1>{{(new Date(this.$store.state.user.dateOfBirth)).toLocaleDateString('en-GB')}}</h1>
-                      <h1>{{this.$store.state.user.profileInstruments}}</h1>
-                      <div class="is-size-5">
-                        <strong>Musician</strong>
+                      <div v-if="this.$store.state.user.musician">
+                        <div class="is-size-5">
+                          <strong>Musician</strong>
+                        </div>
+                        <h1>{{this.$store.state.user.musician.profileInstruments}}/{{this.$store.state.user.musician.yearsOfExperience}} years</h1>
+                        <h1>{{this.$store.state.user.musician.statusOfActivity}}</h1>
+                        <h1>{{this.$store.state.user.musician.country}}, {{this.$store.state.user.musician.city}}</h1>
                       </div>
-                      <h1></h1>
                     </div>
                   </div>
                   <div class="dropdown-divider">

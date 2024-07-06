@@ -15,6 +15,6 @@ namespace webapi.Models
         public string City { get; set; }
         public List<Band> Bands { get; set; }
         public List<MusicianBand> MusicianWrapper { get; set; } = new();
-
+        public List<Band> FoundedBands { get; set; }
     }
 }
